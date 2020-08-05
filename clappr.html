@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8"/>
+    <title>Clappr player with hls.js engine and P2P demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="p2p-media-loader-core.js"></script>
+    <script src="p2p-media-loader-hlsjs.js"></script> -->
+
+    <script type="text/javascript" src="clappr.plainhtml5.min.js"></script>
+    <script type="text/javascript" src="clappr-website.min.js"></script>
+    <script type="text/javascript" src="ScrollMagic.min.js"></script>
+
+    <script type="text/javascript" src="jquery-1.12.0.min.js.js"></script>
+
+    </head>
+    <body class="clappr-ws">
+        <div id="1" class="clappr-ws__section clappr-ws__section--presentation">
+            <div id="player" class="clappr-ws__player clappr-ws__presentation-video">
+                <script>
+                    if (p2pml.hlsjs.Engine.isSupported()) {
+                        var engine = new p2pml.hlsjs.Engine();
+
+                        var player = new Clappr.Player({
+                            source: "https://vjs.zencdn.net/v/oceans.mp4",
+                            playback: {
+                                hlsjsConfig: {
+                                    liveSyncDurationCount: 7, // To have at least 7 segments in queue
+                                    loader: engine.createLoaderClass()
+                                }
+                            },
+                            maxBufferLength: 30,
+                            parentId:"#player",
+                            width: "100%",
+                            height: "100%",
+                            autoPlay: true,
+                            chromeless: true,
+                            mute: true,
+
+                            mediacontrol: true
+                        });
+                        p2pml.hlsjs.initClapprPlayer(player);
+                    } else {
+                        document.write("Not supported :(");
+                    }
+                    
+                    setTimeout(function(){
+                        console.log(111);
+                        $('.media-control').removeClass('media-control-hide').css('display', '');
+                    }, 3000);
+
+                </script>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
