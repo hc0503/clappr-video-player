@@ -15,6 +15,7 @@
     <script type="text/javascript" src="ScrollMagic.min.js"></script>
 
     <script type="text/javascript" src="jquery-1.12.0.min.js.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest"></script>
 
     </head>
     <body class="clappr-ws">
@@ -25,7 +26,7 @@
                         var engine = new p2pml.hlsjs.Engine();
 
                         var player = new Clappr.Player({
-                            source: "https://vjs.zencdn.net/v/oceans.mp4",
+                            source: "https://wowza.peer5.com/live/smil:bbb_abr.smil/playlist.m3u8",
                             playback: {
                                 hlsjsConfig: {
                                     liveSyncDurationCount: 7, // To have at least 7 segments in queue
@@ -50,7 +51,7 @@
                     setTimeout(function(){
                         console.log(111);
                         $('.media-control').removeClass('media-control-hide').css('display', '');
-                    }, 3000);
+                    }, 5000);
 
                 </script>
             </div>
