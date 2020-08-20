@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>Clappr player with hls.js engine and P2P demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,48 +16,45 @@
 
     <script type="text/javascript" src="jquery-1.12.0.min.js.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest"></script>
+    <style>
+        .play-wrapper {
+            display: none !important;
+        }
+    </style>
+</head>
 
-    </head>
-    <body class="clappr-ws">
-        <div id="1" class="clappr-ws__section clappr-ws__section--presentation">
-            <div id="player" class="clappr-ws__player clappr-ws__presentation-video">
-                <script>
-                    if (p2pml.hlsjs.Engine.isSupported()) {
-                        var engine = new p2pml.hlsjs.Engine();
+<body class="clappr-ws">
+    <div id="1" class="clappr-ws__section clappr-ws__section--presentation">
+        <div id="player" class="clappr-ws__player clappr-ws__presentation-video">
+            <script>
+                if (p2pml.hlsjs.Engine.isSupported()) {
+                    var engine = new p2pml.hlsjs.Engine();
 
-                        var player = new Clappr.Player({
-                            source: "https://wowza.peer5.com/live/smil:bbb_abr.smil/playlist.m3u8",
-                            playback: {
-                                hlsjsConfig: {
-                                    liveSyncDurationCount: 7, // To have at least 7 segments in queue
-                                    loader: engine.createLoaderClass()
-                                }
-                            },
-                            maxBufferLength: 30,
-                            parentId:"#player",
-                            width: "100%",
-                            height: "100%",
-                            autoPlay: true,
-                            chromeless: true,
-                            mute: true,
-
-                            mediacontrol: true
-                        });
-                        p2pml.hlsjs.initClapprPlayer(player);
-                    } else {
-                        document.write("Not supported :(");
-                    }
-                    
-                    setTimeout(function(){
-                        console.log(111);
-                        $('.media-control').removeClass('media-control-hide').css('display', '');
-                    }, 5000);
-
-                </script>
-            </div>
+                    var player = new Clappr.Player({
+                        source: "https://wowza.peer5.com/live/smil:bbb_abr.smil/playlist.m3u8",
+                        playback: {
+                            hlsjsConfig: {
+                                liveSyncDurationCount: 7, // To have at least 7 segments in queue
+                                loader: engine.createLoaderClass()
+                            }
+                        },
+                        maxBufferLength: 30,
+                        parentId: "#player",
+                        width: "100%",
+                        height: "100%",
+                        autoPlay: true,
+                        mute: false
+                    });
+                    p2pml.hlsjs.initClapprPlayer(player);
+                    setTimeout(function() {
+                        player.play();
+                    }, 10000);
+                } else {
+                    document.write("Not supported :(");
+                }
+            </script>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
-
-
-
